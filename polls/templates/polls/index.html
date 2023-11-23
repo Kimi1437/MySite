@@ -1,0 +1,15 @@
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+       {% comment %} 以下的这个是硬编码，以后的修改会十分的困难，不合适 {% endcomment %}
+        {% comment %} <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> {% endcomment %}
+
+        {% comment %} 为了区分url的不同，需要加上命名空间来进行区分 {% endcomment %}
+        {% comment %} <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li> {% endcomment %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
